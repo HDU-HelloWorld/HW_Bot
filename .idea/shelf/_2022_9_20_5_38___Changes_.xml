@@ -1,0 +1,19 @@
+<changelist name="在进行更新之前于_2022_9_20_下午5_38_取消提交了变更_[Changes]" date="1663666732595" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2022_9_20_下午5_38_取消提交了变更_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="在进行更新之前于 2022/9/20 下午5:38 取消提交了变更 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="docs_image/logo.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2022_9_20_下午5_38_取消提交了变更_[Changes]/logo.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="logo.png" />
+    <option name="AFTER_PATH" value="logo.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2022_9_20_下午5_38_取消提交了变更_[Changes]/logo1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="resources/font/yuanshen.ttf" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
