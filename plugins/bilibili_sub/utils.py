@@ -79,6 +79,7 @@ async def get_meta(media_id: int, auth=None, reqtype="both", **kwargs):
     """
     from bilireq.utils import get
 
+    BASE_URL = "https://api.bilibili.com"
     url = f"{BASE_URL}/pgc/review/user"
     params = {"media_id": media_id}
     raw_json = await get(url, raw=True, params=params, auth=auth, reqtype=reqtype, **kwargs)
@@ -86,7 +87,8 @@ async def get_meta(media_id: int, auth=None, reqtype="both", **kwargs):
 
 
 async def get_videos(
-    uid: int, tid: int = 0, pn: int = 1, keyword: str = "", order: str = "pubdate"
+        uid: int, tid: int = 0, pn: int = 1, keyword: str = "", order: str = "pubdate",
+        *, auth=None, reqtype="both", **kwargs
 ):
     """
     获取用户投该视频信息
@@ -99,45 +101,15 @@ async def get_videos(
     :param keyword: 搜索关键词
     :param order: 排序方式，可以为 “pubdate(上传日期从新到旧), stow(收藏从多到少), click(播放量从多到少)”
     """
-    from bilireq.utils import ResponseCodeError
-
-    url = f"{BASE_URL}/x/space/arc/search"
-    headers = get_user_agent()
-    headers["Referer"] = f"https://space.bilibili.com/{uid}/video"
-    async with AsyncClient() as client:
-        r = await client.head(
-            "https://space.bilibili.com",
-            headers=headers,
-        )
-        params = {
-            "mid": uid,
-            "ps": 30,
-            "tid": tid,
-            "pn": pn,
-            "keyword": keyword,
-            "order": order,
-        }
-        raw_json = (
-            await client.get(url, params=params, headers=headers, cookies=r.cookies)
-        ).json()
-        if raw_json["code"] != 0:
-            raise ResponseCodeError(
-                code=raw_json["code"],
-                msg=raw_json["message"],
-                data=raw_json.get("data", None),
-            )
-        return raw_json["data"]
-
-async def get_user_card(mid, photo: bool = False, auth=None, reqtype="both", **kwargs):
     from bilireq.utils import get
-
-    url = f"{BASE_URL}/x/web-interface/card"
-    return (
-        await get(
-            url,
-            params={"mid": mid, "photo": photo},
-            auth=auth,
-            reqtype=reqtype,
-            **kwargs,
-        )
-    )["card"]
+    BASE_URL = "https://api.bilibili.com"
+    url = f"{BASE_URL}/x/space/arc/search"
+    params = {
+        "mid": uid,
+        "ps": 30,
+        "tid": tid,
+        "pn": pn,
+        "keyword": keyword,
+        "order": order
+    }
+    return await get(url, params=params, auth=auth, reqtype=reqtype, **kwargs)
