@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="598aca36-6134-4492-a58a-1c41f3eed4cc" name="变更" comment="添加了杭电健康打卡插件">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH" beforeDir="false" afterPath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,23 +19,24 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FLvWFg592vQoPbJZ6IRSthl3E4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/lycoiref/softwares/HW_Bot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/lycoiref/softwares/HW_Bot_dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="bot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="HW_Bot" />
@@ -70,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1664284208576</updated>
       <workItem from="1664284209911" duration="332000" />
+      <workItem from="1664284550305" duration="278000" />
     </task>
     <task id="LOCAL-00001" summary="添加了杭电健康打卡插件">
       <created>1664284233863</created>
