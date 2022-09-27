@@ -81,14 +81,14 @@ async def _(bot: Bot, event: MessageEvent):
     pwd = await HDU_Sign_User.get_password(event.user_id)
     if acc:
         await HDU_Sign_User.set_sign(event.user_id, True)
-        await scheduler.add_job(
+        scheduler.add_job(
             func=auto_punch,
             trigger="cron",
             hour='1,8,12,18',
             minute=0,
             second=0,
-            id=f"auto_punch_{user.user_qq}",
-            args=[user.user_qq, user.hdu_account, user.hdu_password],
+            id=f"auto_punch_{event.user_id}",
+            args=[event.user_id, acc, pwd],
         )
         await open_auto_punch.finish("已开启杭电自动健康打卡")
     else:
@@ -99,7 +99,7 @@ async def _(bot: Bot, event: MessageEvent):
 async def _(bot: Bot, event: MessageEvent):
     await HDU_Sign_User.set_sign(event.user_id, False)
     # 删除定时任务
-    await scheduler.remove_job(f"auto_punch_{event.user_id}")
+    scheduler.remove_job(f"auto_punch_{event.user_id}")
     await close_auto_punch.finish("已关闭杭电自动健康打卡")
 
 
