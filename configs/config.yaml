@@ -23,6 +23,9 @@ _task:
   # DEFAULT_BILIBILI_PARSE: 被动 B站转发解析 进群默认开关状态
   # DEFAULT_FUDU: 被动 复读 进群默认开关状态
   # DEFAULT_PA: 被动 爬 进群默认开关状态
+  # DEFAULT_GENSHIN_ALC: 被动 原神黄历提醒 进群默认开关状态
+  # DEFAULT_EPIC_FREE_GAME: 被动 epic免费游戏 进群默认开关状态
+  # DEFAULT_OPEN_CASE_RESET_REMIND: 被动 每日开箱重置提醒 进群默认开关状态
   DEFAULT_GROUP_WELCOME: true
   DEFAULT_REFUND_GROUP_REMIND: true
   DEFAULT_ZWA: true
@@ -30,6 +33,9 @@ _task:
   DEFAULT_BILIBILI_PARSE: true
   DEFAULT_FUDU: true
   DEFAULT_PA: true
+  DEFAULT_GENSHIN_ALC: true
+  DEFAULT_EPIC_FREE_GAME: true
+  DEFAULT_OPEN_CASE_RESET_REMIND: true
 hook:
   # 基础hook配置
   # CHECK_NOTICE_INFO_CD: 群检测，个人权限检测等各种检测提示信息cd
@@ -90,6 +96,9 @@ pix:
   # PIX_OMEGA_PIXIV_RATIO: PIX图库 与 额外图库OmegaPixivIllusts 混合搜索的比例 参1：PIX图库 参2：OmegaPixivIllusts扩展图库（没有此图库请设置为0）
   # TIMEOUT: 下载图片超时限制（秒）
   # SHOW_INFO: 是否显示图片的基本信息，如PID等
+  # MAX_ONCE_NUM2FORWARD: 单次发送的图片数量达到指定值时转发为合并消息
+  # ALLOW_GROUP_SETU: 允许非超级用户使用-s参数
+  # ALLOW_GROUP_R18: 允许非超级用户使用-r参数
   PIX_IMAGE_SIZE: master
   SEARCH_HIBIAPI_BOOKMARKS: 5000
   WITHDRAW_PIX_MESSAGE:
@@ -100,6 +109,9 @@ pix:
   - 0
   TIMEOUT: 10
   SHOW_INFO: true
+  MAX_ONCE_NUM2FORWARD:
+  ALLOW_GROUP_SETU: false
+  ALLOW_GROUP_R18: false
 black_word:
   # 敏感词检测与惩罚
   # CYCLE_DAYS: 黑名单词汇记录周期
@@ -256,3 +268,85 @@ ai:
   TEXT_FILTER:
   - 鸡
   - 口交
+genshin:
+  # genshin
+  # MHYVERSION: None
+  # SALT: None
+  # N: None
+  # CLIENT_TYPE: None
+  MHYVERSION: 2.11.1
+  SALT: xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs
+  N: h8w582wxwgqvahcdkpvdhbh2w9casgfl
+  CLIENT_TYPE: '5'
+pixiv_rank_search:
+  # P站排行/搜图
+  # TIMEOUT: 图片下载超时限制
+  # MAX_PAGE_LIMIT: 作品最大页数限制，超过的作品会被略过
+  # ALLOW_GROUP_R18: 允许群聊中使用 r18 参数
+  TIMEOUT: 10
+  MAX_PAGE_LIMIT: 20
+  ALLOW_GROUP_R18: false
+resin_remind:
+  # 原神树脂提醒
+  # AUTO_CLOSE_QUERY_FAIL_RESIN_REMIND: 当请求连续三次失败时，关闭用户的树脂提醒
+  # CUSTOM_RESIN_OVERFLOW_REMIND: 自定义树脂溢出指定数量时的提醒，空值是为关闭
+  AUTO_CLOSE_QUERY_FAIL_RESIN_REMIND: true
+  CUSTOM_RESIN_OVERFLOW_REMIND: 20
+bt:
+  # 磁力搜索
+  # BT_MAX_NUM: 单次BT搜索返回最大消息数量
+  BT_MAX_NUM: 10
+open_cases:
+  # 开箱
+  # INITIAL_OPEN_CASE_COUNT: 初始每日开箱次数
+  # EACH_IMPRESSION_ADD_COUNT: 每 * 点好感度额外增加开箱次数
+  # COOKIE: BUFF的cookie
+  # BUFF_PROXY: 使用代理访问BUFF
+  INITIAL_OPEN_CASE_COUNT: 20
+  EACH_IMPRESSION_ADD_COUNT: 3
+  COOKIE:
+  BUFF_PROXY:
+russian:
+  # 俄罗斯轮盘
+  # MAX_RUSSIAN_BET_GOLD: 俄罗斯轮盘最大赌注金额
+  MAX_RUSSIAN_BET_GOLD: 1000
+bilibili_sub:
+  # B站订阅
+  # GROUP_BILIBILI_SUB_LEVEL: 群内bilibili订阅需要管理的权限
+  # LIVE_MSG_AT_ALL: 直播提醒是否AT全体（仅在真寻是管理员时生效）
+  # UP_MSG_AT_ALL: UP动态投稿提醒是否AT全体（仅在真寻是管理员时生效）
+  GROUP_BILIBILI_SUB_LEVEL: 5
+  LIVE_MSG_AT_ALL: false
+  UP_MSG_AT_ALL: false
+search_buff_skin_price:
+  # BUFF查询皮肤
+  # BUFF_PROXY: BUFF代理，有些厂ip可能被屏蔽
+  # COOKIE: BUFF的账号cookie
+  BUFF_PROXY:
+  COOKIE:
+send_setu:
+  # 色图
+  # WITHDRAW_SETU_MESSAGE: 自动撤回，参1：延迟撤回色图时间(秒)，0 为关闭 | 参2：监控聊天类型，0(私聊) 1(群聊) 2(群聊+私聊)
+  # ONLY_USE_LOCAL_SETU: 仅仅使用本地色图，不在线搜索
+  # INITIAL_SETU_PROBABILITY: 初始色图概率，总概率 = 初始色图概率 + 好感度
+  # DOWNLOAD_SETU: 是否存储下载的色图，使用本地色图可以加快图片发送速度
+  # TIMEOUT: 色图下载超时限制(秒)
+  # SHOW_INFO: 是否显示色图的基本信息，如PID等
+  # ALLOW_GROUP_R18: 在群聊中启用R18权限
+  # MAX_ONCE_NUM2FORWARD: 单次发送的图片数量达到指定值时转发为合并消息
+  WITHDRAW_SETU_MESSAGE:
+  - 0
+  - 1
+  ONLY_USE_LOCAL_SETU: false
+  INITIAL_SETU_PROBABILITY: 0.7
+  DOWNLOAD_SETU: true
+  TIMEOUT: 10
+  SHOW_INFO: true
+  ALLOW_GROUP_R18: false
+  MAX_ONCE_NUM2FORWARD:
+check_zhenxun_update:
+  # 自动更新
+  # UPDATE_REMIND: 真寻是否检测版本状态
+  # AUTO_UPDATE_ZHENXUN: 真寻是否自动检查更新
+  UPDATE_REMIND: true
+  AUTO_UPDATE_ZHENXUN: false
