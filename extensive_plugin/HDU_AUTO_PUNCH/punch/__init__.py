@@ -81,6 +81,15 @@ async def _(bot: Bot, event: MessageEvent):
     pwd = await HDU_Sign_User.get_password(event.user_id)
     if acc:
         await HDU_Sign_User.set_sign(event.user_id, True)
+        await scheduler.add_job(
+            func=auto_punch,
+            trigger="cron",
+            hour='1,8,12,18',
+            minute=0,
+            second=0,
+            id=f"auto_punch_{user.user_qq}",
+            args=[user.user_qq, user.hdu_account, user.hdu_password],
+        )
         await open_auto_punch.finish("已开启杭电自动健康打卡")
     else:
         await open_auto_punch.finish("请先绑定杭电通行证")
