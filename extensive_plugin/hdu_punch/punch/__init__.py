@@ -89,8 +89,8 @@ async def _(bot: Bot, event: MessageEvent):
             scheduler.add_job(
                 func=auto_punch,
                 trigger="cron",
-                hour='1,8,12,18',
-                minute=20,
+                hour='1,8',
+                minute=0,
                 second=0,
                 misfire_grace_time=60,
                 id=f"auto_punch_{event.user_id}",
@@ -141,8 +141,8 @@ async def _():
             scheduler.add_job(
                 func=auto_punch,
                 trigger="cron",
-                hour='1,8,12,18',
-                minute=43,
+                hour='1,8',
+                minute=0,
                 second=0,
                 misfire_grace_time=60,
                 id=f"auto_punch_{user.user_qq}",
