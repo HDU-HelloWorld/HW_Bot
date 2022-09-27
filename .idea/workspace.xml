@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="add8f898-b9d8-49b6-a886-580d3c94eff0" name="Changes" comment="添加了自动健康打卡插件">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH" beforeDir="false" afterPath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +96,7 @@
       <workItem from="1664243898960" duration="15016000" />
       <workItem from="1664268735430" duration="3689000" />
       <workItem from="1664282890875" duration="412000" />
+      <workItem from="1664283311899" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1663666914432</created>
@@ -146,7 +147,21 @@
       <option name="project" value="LOCAL" />
       <updated>1664282911735</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="添加了自动健康打卡插件">
+      <created>1664283359039</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664283359039</updated>
+    </task>
+    <task id="LOCAL-00009" summary="添加了自动健康打卡插件">
+      <created>1664283375493</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664283375493</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
