@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="add8f898-b9d8-49b6-a886-580d3c94eff0" name="Changes" comment="同步到最新的真寻版本">
+    <list default="true" id="add8f898-b9d8-49b6-a886-580d3c94eff0" name="Changes" comment="添加了自动健康打卡插件">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/word_bank/_old_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/image/sign/sign_res/bar.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/image/sign/sign_res/bar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/image/sign/sign_res/bar_white.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/image/sign/sign_res/bar_white.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +93,7 @@
       <workItem from="1664176148254" duration="2177000" />
       <workItem from="1664194005432" duration="2213000" />
       <workItem from="1664243898960" duration="15016000" />
-      <workItem from="1664268735430" duration="2560000" />
+      <workItem from="1664268735430" duration="3540000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1663666914432</created>
@@ -129,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663667975346</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="添加了自动健康打卡插件">
+      <created>1664281773842</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664281773842</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +152,8 @@
     <MESSAGE value="Sync Version" />
     <MESSAGE value="回退版本" />
     <MESSAGE value="同步到最新的真寻版本" />
-    <option name="LAST_COMMIT_MESSAGE" value="同步到最新的真寻版本" />
+    <MESSAGE value="添加了自动健康打卡插件" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了自动健康打卡插件" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_Bot$bot.coverage" NAME="bot 覆盖结果" MODIFIED="1664281419686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

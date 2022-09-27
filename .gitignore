@@ -148,7 +148,6 @@ fantasy_card/
 data/
 log/
 backup/
-extensive_plugin/
 test/
 bot.py
 data/
