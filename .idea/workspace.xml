@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="add8f898-b9d8-49b6-a886-580d3c94eff0" name="Changes" comment="修复了自动打卡的定时任务问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/_models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/chromedriver" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/assets/create_secret.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/assets/new.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/assets/run.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/assets/success.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensive_plugin/HDU_AUTO_PUNCH/punch/requirements.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +99,8 @@
       <workItem from="1664194005432" duration="2213000" />
       <workItem from="1664243898960" duration="15016000" />
       <workItem from="1664268735430" duration="2560000" />
-      <workItem from="1664289607443" duration="2549000" />
+      <workItem from="1664289607443" duration="3057000" />
+      <workItem from="1664298345347" duration="2508000" />
     </task>
     <task id="LOCAL-00001" summary="添加了杭电健康打卡插件">
       <created>1664284233863</created>

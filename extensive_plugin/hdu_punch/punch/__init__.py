@@ -90,8 +90,9 @@ async def _(bot: Bot, event: MessageEvent):
                 func=auto_punch,
                 trigger="cron",
                 hour='1,8,12,18',
-                minute=0,
+                minute=20,
                 second=0,
+                misfire_grace_time=60,
                 id=f"auto_punch_{event.user_id}",
                 args=[event.user_id, acc, pwd],
             )
@@ -141,8 +142,9 @@ async def _():
                 func=auto_punch,
                 trigger="cron",
                 hour='1,8,12,18',
-                minute=0,
+                minute=43,
                 second=0,
+                misfire_grace_time=60,
                 id=f"auto_punch_{user.user_qq}",
                 args=[user.user_qq, user.hdu_account, user.hdu_password],
             )
@@ -233,6 +235,7 @@ async def auto_punch(user_qq, acc, pwd):
         driver = webdriver.Chrome(service=Service('/usr/bin/chromedriver'), options=chrome_options)
         wait = WebDriverWait(driver, 3, 0.5)
         bot = get_bot()
+        await bot.send_private_msg(user_id=user_qq, message="开始打卡")
         await punch(driver, wait, bot, user_qq, acc, pwd)
         # await bot.send_private_msg(user_id=user_qq, message=return_data)
     except Exception as e:
