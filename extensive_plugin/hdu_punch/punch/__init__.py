@@ -117,11 +117,11 @@ async def _(bot: Bot, event: MessageEvent):
     try:
         # 删除定时任务
         scheduler.remove_job(f"auto_punch_{event.user_id}")
-        await close_auto_punch.finish("已关闭hdu_punch")
+        await HDU_Sign_User.set_sign(event.user_id, False)
     except Exception as e:
         logger.error(e)
         await close_auto_punch.finish("尚未开启hdu_punch")
-    await HDU_Sign_User.set_sign(event.user_id, False)
+    await close_auto_punch.finish("已关闭hdu_punch")
 
 
 @bind.handle()
