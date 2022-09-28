@@ -1,8 +1,8 @@
 import os
+import random
 import sys
 import time
 
-import requests
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
@@ -85,18 +85,25 @@ async def _(bot: Bot, event: MessageEvent):
     pwd = await HDU_Sign_User.get_password(event.user_id)
     if acc:
         await HDU_Sign_User.set_sign(event.user_id, True)
+        # 随机生成打卡时间（小时和分钟）
+        hour = random.randint(0, 23)
+        minute = random.randint(0, 59)
+        # 存入数据库
+        save_time = await HDU_Sign_User.set_hour(event.user_id, hour, minute)
+        if not save_time:
+            await open_auto_punch.finish("打卡时间设置失败，请稍后重试")
         try:
             scheduler.add_job(
                 func=auto_punch,
                 trigger="cron",
-                hour='1,8',
-                minute=0,
+                hour=hour,
+                minute=minute,
                 second=0,
                 misfire_grace_time=60,
                 id=f"auto_punch_{event.user_id}",
                 args=[event.user_id, acc, pwd],
             )
-            await open_auto_punch.finish("已开启杭电自动健康打卡")
+            await open_auto_punch.finish(f"已开启杭电自动健康打卡，你的打卡时间为每天{hour}点{minute}分")
         except Exception as e:
             await open_auto_punch.finish("已经开启过了，请勿重复开启")
     else:
@@ -137,12 +144,13 @@ async def _():
     user_list = await HDU_Sign_User.get_all_users()
     for user in user_list:
         logger.info(user.auto_sign)
+        hour, minute = await HDU_Sign_User.get_time(user.user_qq)
         if user.auto_sign:
             scheduler.add_job(
                 func=auto_punch,
                 trigger="cron",
-                hour='1,8',
-                minute=0,
+                hour=hour,
+                minute=minute,
                 second=0,
                 misfire_grace_time=60,
                 id=f"auto_punch_{user.user_qq}",
@@ -199,7 +207,6 @@ async def punch(browser, wait, bot, user_id, acc, pwd):
     un = acc
     pd = pwd
     logger.info(f"正在打卡，账号：{un}")
-    logger.info(f"正在打卡，密码：{pd}")
 
     try:
         browser.get("https://cas.hdu.edu.cn/cas/login")
@@ -225,7 +232,7 @@ async def punch(browser, wait, bot, user_id, acc, pwd):
             if sessionId is not None and sessionId != '':
                 break
         return_message = await send(sessionId, bot, user_id)
-        await bot.send_private_msg(user_id=user_id, message=return_message)
+        # await bot.send_private_msg(user_id=user_id, message=return_message)
     finally:
         browser.quit()
 
@@ -235,7 +242,6 @@ async def auto_punch(user_qq, acc, pwd):
         driver = webdriver.Chrome(service=Service('/usr/bin/chromedriver'), options=chrome_options)
         wait = WebDriverWait(driver, 3, 0.5)
         bot = get_bot()
-        await bot.send_private_msg(user_id=user_qq, message="开始打卡")
         await punch(driver, wait, bot, user_qq, acc, pwd)
         # await bot.send_private_msg(user_id=user_qq, message=return_data)
     except Exception as e:

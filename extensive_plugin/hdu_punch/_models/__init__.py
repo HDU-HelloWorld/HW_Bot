@@ -11,6 +11,8 @@ class HDU_Sign_User(db.Model):
     hdu_account = db.Column(db.String(10))
     hdu_password = db.Column(db.String())
     auto_sign = db.Column(db.Boolean())
+    hour = db.Column(db.Integer)
+    minute = db.Column(db.Integer)
 
     _idx1 = db.Index("hdu_punch_idx1", "user_qq", "hdu_account", unique=True)
 
@@ -118,3 +120,32 @@ class HDU_Sign_User(db.Model):
         query = cls.query.where(cls.auto_sign == True)
         users = await query.gino.all()
         return users
+
+    @classmethod
+    async def get_time(cls, user_qq: int):
+        """
+        说明:
+            获取用户打卡时间
+        参数:
+            :param user_qq： 用户qq
+        """
+        query = cls.query.where(cls.user_qq == user_qq)
+        user = await query.gino.first()
+        return user.hour, user.minute
+
+    @classmethod
+    async def set_time(cls, user_qq: int, hour: int, minute: int):
+        """
+        说明:
+            设置用户打卡时间
+        参数:
+            :param user_qq： 用户qq
+            :param hour: 小时
+            :param minute: 分钟
+        """
+        query = cls.query.where(cls.user_qq == user_qq)
+        user = await query.gino.first()
+        if user:
+            await user.update(hour=hour, minute=minute).apply()
+            return True
+        return False

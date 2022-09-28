@@ -135,6 +135,14 @@ async def _():
             "ALTER TABLE goods_info ADD daily_purchase_limit Json DEFAULT '{}';",
             "goods_info"
         ),  # 新增纯文本
+        (
+            "ALTER TABLE hdu_auto_sign_user ADD hour Integer;",
+            "hdu_auto_sign_user",
+        ),  # 新增 hdu 自动签到时间
+        (
+            "ALTER TABLE hdu_auto_sign_user ADD minute Integer;",
+            "hdu_auto_sign_user",
+        ),  # 新增 hdu 自动签到时间
     ]
     for sql in sql_str + GDict.get('run_sql', []):
         try:
