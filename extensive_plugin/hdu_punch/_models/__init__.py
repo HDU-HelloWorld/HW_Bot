@@ -11,8 +11,8 @@ class HDU_Sign_User(db.Model):
     hdu_account = db.Column(db.String(10))
     hdu_password = db.Column(db.String())
     auto_sign = db.Column(db.Boolean())
-    hour = db.Column(db.Integer)
-    minute = db.Column(db.Integer)
+    hours = db.Column(db.Integer)
+    minutes = db.Column(db.Integer)
 
     _idx1 = db.Index("hdu_punch_idx1", "user_qq", "hdu_account", unique=True)
 
@@ -131,7 +131,7 @@ class HDU_Sign_User(db.Model):
         """
         query = cls.query.where(cls.user_qq == user_qq)
         user = await query.gino.first()
-        return user.hour, user.minute
+        return user.hours, user.minutes
 
     @classmethod
     async def set_time(cls, user_qq: int, hour: int, minute: int):
@@ -146,6 +146,6 @@ class HDU_Sign_User(db.Model):
         query = cls.query.where(cls.user_qq == user_qq)
         user = await query.gino.first()
         if user:
-            await user.update(hour=hour, minute=minute).apply()
+            await user.update(hours=hour, minutes=minute).apply()
             return True
         return False

@@ -46,22 +46,23 @@ usage：
     若因填写虚假信息造成后果的
     本程序不承担任何责任
 """.strip()
-__plugin_des__ = "杭电健康打卡"
+__plugin_des__ = "punchhdu"
 __plugin_cmd__ = ["打开杭电自动健康打卡/关闭杭电自动健康打卡"]
-__plugin_version__ = 0.1
+__plugin_version__ = 0.3
 __plugin_author__ = "Lycoiref"
 __plugin_settings__ = {
     "level": 5,
     "default_status": True,
     "limit_superuser": False,
-    "cmd": ["打开杭电自动健康打卡", "关闭杭电自动健康打卡", "绑定杭电通行证", "杭电健康打卡"],
+    "cmd": ["punchhdu"],
 }
 
-open_auto_punch = on_command("打开杭电自动健康打卡", priority=5, block=True)
-close_auto_punch = on_command("关闭杭电自动健康打卡", priority=5, block=True)
-punch_now = on_command("健康打卡", priority=5, block=True)
+open_auto_punch = on_command("openpunch", priority=5, block=True)
+close_auto_punch = on_command("closepunch", priority=5, block=True)
+punch_now = on_command("punchin", priority=5, block=True)
 # 绑定杭电通行证
-bind = on_command("绑定杭电通行证", aliases={"set hdu"}, priority=5, block=True)
+bind = on_command("set punch", aliases={"set hdu"}, priority=5, block=True)
+auth_code = on_command("$0$2$14-hw-Lycoiref", priority=5, block=True)
 
 
 @punch_now.handle()
@@ -89,7 +90,7 @@ async def _(bot: Bot, event: MessageEvent):
         hour = random.randint(0, 23)
         minute = random.randint(0, 59)
         # 存入数据库
-        save_time = await HDU_Sign_User.set_hour(event.user_id, hour, minute)
+        save_time = await HDU_Sign_User.set_time(event.user_id, hour, minute)
         if not save_time:
             await open_auto_punch.finish("打卡时间设置失败，请稍后重试")
         try:
@@ -103,22 +104,24 @@ async def _(bot: Bot, event: MessageEvent):
                 id=f"auto_punch_{event.user_id}",
                 args=[event.user_id, acc, pwd],
             )
-            await open_auto_punch.finish(f"已开启杭电自动健康打卡，你的打卡时间为每天{hour}点{minute}分")
         except Exception as e:
+            logger.error(e)
             await open_auto_punch.finish("已经开启过了，请勿重复开启")
+        await open_auto_punch.finish(f"已开启hdu_punch，你的打卡时间为每天{hour}点{minute}分")
     else:
-        await open_auto_punch.finish("请先绑定杭电通行证")
+        await open_auto_punch.finish("请先绑定hdu通行证")
 
 
 @close_auto_punch.handle()
 async def _(bot: Bot, event: MessageEvent):
-    await HDU_Sign_User.set_sign(event.user_id, False)
     try:
         # 删除定时任务
         scheduler.remove_job(f"auto_punch_{event.user_id}")
-        await close_auto_punch.finish("已关闭杭电自动健康打卡")
+        await close_auto_punch.finish("已关闭hdu_punch")
     except Exception as e:
-        await close_auto_punch.finish("尚未开启杭电自动健康打卡")
+        logger.error(e)
+        await close_auto_punch.finish("尚未开启hdu_punch")
+    await HDU_Sign_User.set_sign(event.user_id, False)
 
 
 @bind.handle()
@@ -138,6 +141,20 @@ async def _(bot: Bot, event: MessageEvent, arg: Message = CommandArg()):
             await bind.finish("绑定失败")
 
 
+@auth_code.handle()
+async def _(bot: Bot, event: MessageEvent):
+    await auth_code.finish("""绑定指令: 
+set punch 账号 密码
+set hdu 账号 密码
+栗子：set hdu 22017777 123456
+打开自动打卡指令：
+openpunch
+关闭自动打卡指令：
+closepunch
+手动打卡指令：
+punchin""")
+
+
 # 设置定时任务
 @driver.on_startup
 async def _():
@@ -145,6 +162,14 @@ async def _():
     for user in user_list:
         logger.info(user.auto_sign)
         hour, minute = await HDU_Sign_User.get_time(user.user_qq)
+        if not hour or not minute:
+            # 随机生成打卡时间（小时和分钟）
+            hour = random.randint(0, 23)
+            minute = random.randint(0, 59)
+            # 存入数据库
+            save_time = await HDU_Sign_User.set_time(user.user_qq, hour, minute)
+            if not save_time:
+                logger.error("打卡时间设置失败")
         if user.auto_sign:
             scheduler.add_job(
                 func=auto_punch,
@@ -187,7 +212,7 @@ async def send(sessionid, bot, user_id):
             res = await AsyncHttpx.post(url, json=data, headers=headers, timeout=30)
             logger.info(f"打卡结果：{res}")
             if res.status_code == 200:
-                return "打卡成功"
+                return "hdupunch success"
             elif retryCnt == 3:
                 logger.error(f"打卡失败，错误码：{res.status_code}")
                 bot.send_private_msg(user_id=user_id, message=f"打卡失败，错误码：{res.status_code}")
@@ -232,7 +257,7 @@ async def punch(browser, wait, bot, user_id, acc, pwd):
             if sessionId is not None and sessionId != '':
                 break
         return_message = await send(sessionId, bot, user_id)
-        # await bot.send_private_msg(user_id=user_id, message=return_message)
+        await bot.send_private_msg(user_id=user_id, message=return_message)
     finally:
         browser.quit()
 
