@@ -13,6 +13,7 @@ nonebot.load_plugin("nonebot_plugin_apscheduler")
 nonebot.load_plugins("basic_plugins")
 nonebot.load_plugins("plugins")
 nonebot.load_plugins("extensive_plugin")
+nonebot.load_plugins("test_plugins")
 # 最后加载权限控制
 nonebot.load_plugins("basic_plugins/hooks")
 
